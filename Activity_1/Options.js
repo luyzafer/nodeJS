@@ -1,11 +1,11 @@
 const options = {
     courseID: {
-        demand : true
+        demandOption : true
     },
     studentName:{
-        demand : true
+        demandOption : true
     },
     studentId:{
-        demand : true
+        demandOption : true
     }
 }
