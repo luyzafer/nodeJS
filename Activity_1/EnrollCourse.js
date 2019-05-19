@@ -1,5 +1,7 @@
 
 const {options} = require ('./Options');
+const {course,courses} = require ('./CoursesInformation')
+const {findCourse} = require ('./FindCourse')
 
 const fs= require('fs');
 
@@ -16,8 +18,6 @@ let createFile = (argv) => {
                         "Student id: " + argv.studentId + "\n" ;
         
         finalText = textCourse + textStudent;
-
-
         fs.writeFile('courseEnrolled.txt', finalText, (err) => {
             if(err) throw (err);
             console.log("Course enrolled and file created")
@@ -25,6 +25,20 @@ let createFile = (argv) => {
     }else{
         console.log("The parameters: courseID, studentName and studentId are required")
     }
-}
+};
 
-createFile(argv)
+
+function coursesApp(argv){
+    if(argv.courseID == undefined){
+        for (i = 0; i < courses.length; i++) {
+            course(i,function(text){
+                console.log(text);
+            })
+        }
+    }else if(argv.courseID != undefined && (argv.studentName  == undefined && argv.studentId == undefined)){
+        console.log(findCourse(argv.courseID));
+    } else{
+        createFile(argv)
+    }
+}
+coursesApp(argv)

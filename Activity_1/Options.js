@@ -9,3 +9,7 @@ const options = {
         demandOption : true
     }
 }
+
+module.exports = {
+    options
+}

@@ -1,5 +1,4 @@
 const {courses} = require ('./CoursesData');
-const {options} = require ('./Options');
 
 
 function findCourse(courseId){
@@ -15,12 +14,6 @@ function findCourse(courseId){
     }
 }
 
-const argv = require('yargs')
-            .command('enroll', 'Enroll Course', options)
-            .argv
-
-console.log(findCourse(argv.courseID))
-
 module.exports = {
-    argv, findCourse
+    findCourse
 }
