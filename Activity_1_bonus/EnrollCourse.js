@@ -2,8 +2,10 @@
 const {options} = require ('./Options');
 const {course,courses} = require ('./CoursesInformation')
 const {findCourse} = require ('./FindCourse')
+const express = require('express')
+const app = express()
 
-const fs= require('fs');
+let result = ""
 
 
 const argv = require('yargs')
@@ -17,13 +19,10 @@ let createFile = (argv) => {
         textStudent = "Student name: " + argv.studentName + "\n" +
                         "Student id: " + argv.studentId + "\n" ;
         
-        finalText = textCourse + textStudent;
-        fs.writeFile('courseEnrolled.txt', finalText, (err) => {
-            if(err) throw (err);
-            console.log("Course enrolled and file created")
-        });
+        result = textCourse + textStudent;
+        
     }else{
-        console.log("The parameters: courseID, studentName and studentId are required")
+        result = "The parameters: courseID, studentName and studentId are required"
     }
 };
 
@@ -32,13 +31,19 @@ function coursesApp(argv){
     if(argv.courseID == undefined){
         for (i = 0; i < courses.length; i++) {
             course(i,function(text){
-                console.log(text);
+                result = text;
             })
         }
     }else if(argv.courseID != undefined && (argv.studentName  == undefined && argv.studentId == undefined)){
-        console.log(findCourse(argv.courseID));
+        result= findCourse(argv.courseID);
     } else{
         createFile(argv)
     }
 }
 coursesApp(argv)
+
+app.get('/', function (req, res) {
+    res.send(result)
+  })
+   
+  app.listen(3000)
