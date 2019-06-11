@@ -1,0 +1,34 @@
+{{>header}}
+
+<table>
+  <tr>
+    <th>Nombre   </th>
+    <th>Descripcion  </th> 
+    <th>Valor   </th>
+    <th>Modailidad   </th>
+    <th>Intensidad Horaria   </th>
+  </tr>
+  <tr>
+    <td>{{name}}   </td>
+    <td>{{description}}   </td> 
+    <td>{{value}}   </td>
+    <td>{{modality}}   </td> 
+    <td>{{schedule}}  </td>
+  </tr>
+</table>
+
+<form action="/enrollCourse" method="post">
+
+    <p>Ingrese los siguientes datos para realizar la inscripcion</p>
+
+    
+    <p>Documento de identidad: <input type="number" name="idEstudiante" required></p>
+    <p>Nombre: <input type="text" name="nombreestudiante" required></p>
+    <p>Correo: <input type="text" name="correo" required></p>
+    <p>Telefono: <input type="number" name="telefono" required></p>
+  
+
+    <button>Enroll Course</button>
+</form>
+
+{{>footer}}

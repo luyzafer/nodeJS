@@ -1,0 +1,19 @@
+{{>header}}
+
+{{{listarCursos}}}
+
+<form action="/detailCourse" method="post">
+<p>Diligencie los datos para ver detalle curso</p>
+<table id="t01">
+    <tr>
+        <th>Nombre Curso</th>
+    </tr>
+    <tr>
+        <td><input type="text" name="nombreCurso" required></td>
+    </tr>
+    </table>
+    
+    <button>View Detail</button>
+</form>
+
+{{>footer}}

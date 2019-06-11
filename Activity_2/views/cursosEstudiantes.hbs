@@ -1,0 +1,16 @@
+{{>header}}
+
+{{{texto}}}
+
+<p>Digite la siguiente informacion si desea eliminar un estudiante de un curso </p>
+
+<form action="/removeEnroll" method="post"> 
+    
+    <p>Id estudiante: <input type="text" name="idEstudiante" required></p>
+    <p>Id curso: <input type="text" name="idCurso" required></p>   
+
+    <button>Eliminar inscripcion</button>
+</form>
+    
+
+{{footer}}
