@@ -3,7 +3,8 @@ const app = express();
 const path = require('path');
 const hbs = require('hbs')
 const bodyParser = require('body-parser')
-require('./helpers') 
+require('./helpers_cursos') 
+require('./helpers_cursos_estudiantes') 
 const fs = require('fs');
 //require('./yargs')
 
@@ -13,6 +14,8 @@ listaEstudiantesCursos = [];
 courseSelected = '';
 estudiantedSelected = '';
 cursoEstudiante = '';
+listaCursosEstudiante = [];
+existe = false;
 
 const directorioPublico = path.join(__dirname, '../public');
 const directorioPartials = path.join(__dirname,'../partials');
@@ -57,21 +60,7 @@ app.post('/adicionarCursoForm', (req, res) => {
 
 
 app.post('/cursosEstudiantes', (req,res) => {
-    listarEstudiantes();
-    listar();
-    listarEstudiantesCursos();
-    let texto = "";
-    listaEstudiantesCursos.forEach(item => {
-        let estudiante = listaEstudiantes.find(est => est.idEstudiante == item.idEstudiante);
-        let curso = listaCursos.find(cur => cur.idCurso == item.idCurso);
-        if(estudiante != undefined && curso!= undefined){
-            texto = texto + "<b>Nombre Curso:</b>  " + curso.nombreCurso + "<b>    Id Curso:</b>  " + curso.idCurso + "             |           <b>Nombre estudiante:</b>   "  + estudiante.nombreestudiante + "      <b>Id estudiante:</b>   "  + estudiante.idEstudiante   + "<br>"
-            
-        }
-    });
-    res.render('cursosEstudiantes', {
-        texto : texto
-    });
+    res.render('cursosEstudiantes');
 });
 
 
@@ -82,22 +71,28 @@ app.post('/removeEnroll', (req, res)=> {
         console.log("No existen esas condiciones para eliminar inscripcion");
     }else{
         listaEstudiantesCursos = remove;
-        guardarEnroll();
-        let texto = "";
-        listaEstudiantesCursos.forEach(item => {
-        let estudiante = listaEstudiantes.find(est => est.idEstudiante == item.idEstudiante);
-        let curso = listaCursos.find(cur => cur.idCurso == item.idCurso);
-        if(estudiante != undefined && curso!= undefined){
-            texto = texto + "<b>Nombre Curso:</b>  " + curso.nombreCurso + "<b>      Id Curso:</b>  " + curso.idCurso + "             |           <b>Nombre estudiante:</b>   "  + estudiante.nombreestudiante + "      <b>Id estudiante:</b>   "  + estudiante.idEstudiante   + "<br>"
-            
-        }
-    });
-    res.render('cursosEstudiantes', {
-        texto : texto
-    });
     }
+    guardarEnroll();
+    listarEstudiantesCursos()
+    res.render('removeEnroll');
 });
 
+app.post('/cambiarEstado', (req, res)=> {
+    listar();
+    listaCursos = listaCursos.map(curso=> {
+        if(req.body.nombreCurso === curso.nombreCurso){
+            if(curso.estado=="disponible"){
+                curso.estado="cerrado"
+            }else{
+                curso.estado="disponible"
+            }
+        }
+        return curso
+    })
+    guardarCurso();
+    listar()
+    res.render('cursosEstudiantes');
+});
 
 
 //Init Add Courses Methods
@@ -163,12 +158,18 @@ app.post('/enrollCourse', (req, res) => {
     }
 
     validarCursoEstudiante();
-    
-     res.render('calculos');
+    let messageRender = '';
+    if(existe){
+        messageRender = "Ya se encuentra inscrito en el curso: "
+    }else{
+        messageRender = "Nuevo curso inscrito: ";
+    }
+     res.render('enrollCourse', {
+        mensaje: messageRender + courseSelected.nombreCurso});
 });
 
 const validarCursoEstudiante = () =>{
-    let existe = false;
+    existe = false;
     console.log(estudiantedSelected.idEstudiante);
     listaEstudiantesCursos.forEach(element => {
         if(element.idEstudiante == estudiantedSelected.idEstudiante && element.idCurso == courseSelected.idCurso){
@@ -230,6 +231,7 @@ const listarEstudiantes = () =>{
 const listarEstudiantesCursos = () =>{
     listaEstudiantesCursos = require('../listaEstudiantesCursos.json')
 };
+
 
 app.listen(3000, () => {
     console.log('Escuchando en el puerto 3000')

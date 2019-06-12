@@ -1,1 +1,1 @@
-[{"nombreCurso":"Curso1","idCurso":"1","descripcion":"Curso 1 descripcion","valor":"1000","modalidad":"virtual","intensidadHoraria":"1"}]
+[{"nombreCurso":"Curso1","idCurso":"1","descripcion":"Curso 1 descripcion","valor":"1000","modalidad":"virtual","intensidadHoraria":"1","estado":"disponible"},{"nombreCurso":"test","idCurso":"6","descripcion":"test","valor":"33","modalidad":"virtual","intensidadHoraria":"64","estado":"disponible"},{"nombreCurso":"hola","idCurso":"3","descripcion":"dff","valor":"74","modalidad":"virtual","intensidadHoraria":"233","estado":"cerrado"}]

@@ -28,11 +28,14 @@ hbs.registerHelper('listar',() =>{
 
 hbs.registerHelper('listarCursos',() =>{
     listaCursos = require('../listadoCursos.json');
-    let texto = "<table> \
+    listaCursos = listaCursos.filter(curso => curso.estado === "disponible")
+   
+    let texto = "<table class=\"tablaBorder\"> \
                 <thead> \
                 <th>Nombre </> \
                 <th>Descripcion </> \
                 <th>Valor </> \
+                <th>Acciones </> \
                 </thead>\
                 <tbody>";
 
@@ -41,7 +44,8 @@ hbs.registerHelper('listarCursos',() =>{
                 '<tr>'+    
                     '<td>'+curso.nombreCurso+'</td>' +
                     '<td>'+curso.descripcion+'</td>' +
-                    '<td>'+curso.valor+'</td> </tr>';
+                    '<td>'+curso.valor+'</td> ' +
+                    '<td>'+"<form action=\"/detailCourse\" method=\"post\"> <input type=\"hidden\" name=\"nombreCurso\" value=\""+curso.nombreCurso + "\"> <button>View Detail</button> </form>"+'</td></tr>';
 
         
     });
