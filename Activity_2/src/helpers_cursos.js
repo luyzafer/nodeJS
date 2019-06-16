@@ -52,3 +52,30 @@ hbs.registerHelper('listarCursos',() =>{
     texto = texto + '</body></table>';
     return texto;
 });
+
+hbs.registerHelper('listCoursesEstudiante',() =>{
+    listaCursos = require('../listadoCursos.json');
+    listaCursos = listaCursos.filter(curso => curso.estado === "disponible")
+   
+    let texto = "<table class=\"tablaBorder\"> \
+                <thead> \
+                <th>Nombre </> \
+                <th>Descripcion </> \
+                <th>Valor </> \
+                <th>Acciones </> \
+                </thead>\
+                <tbody>";
+
+                listaCursos.forEach(curso => {
+        texto = texto+
+                '<tr>'+    
+                    '<td>'+curso.nombreCurso+'</td>' +
+                    '<td>'+curso.descripcion+'</td>' +
+                    '<td>'+curso.valor+'</td> ' +
+                    '<td>'+"<form action=\"/detailCourse\" method=\"post\"> <input type=\"hidden\" name=\"nombreCurso\" value=\""+curso.nombreCurso + "\"> <button>View Detail</button> </form>"+'</td></tr>';
+
+        
+    });
+    texto = texto + '</body></table>';
+    return texto;
+});

@@ -31,6 +31,7 @@ hbs.registerHelper('listarCursosEstudiantes',() =>{
     <tbody>";
 
     listaEstudiantesCursos.forEach(item => {
+        console.log("item " + item.idEstudiante + item.idCurso)
         let estudiante = listaEstudiantes.find(est => est.idEstudiante == item.idEstudiante);
         let curso = listaCursos.find(cur => cur.idCurso == item.idCurso);
         if(estudiante != undefined && curso!= undefined){

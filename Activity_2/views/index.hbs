@@ -1,16 +1,19 @@
 {{>header}}
-        <p>
-            Bienvenido a la pagina de inicio
-        </p>
+<p>
+    Bienvenido a la pagina de inicio
+</p>
 
 
-<form action="/coordinador" method="post">    
-    <button>Soy coordinador</button>
-</form>
-
-
-<form action="/estudiante" method="post">    
-    <button>Soy estudiante</button>
-</form>
-
+<div class="row">
+    <div class="col-md-9 col-md-offset-9 col-xs-12 text-right">
+        <div class="btn-group" role="group">
+            <form action="/coordinador" method="post">
+                <button class="button">Soy coordinador</button>
+            </form>
+            <form action="/estudiante" method="post">
+                <button class="button">Soy estudiante</button>
+            </form>
+        </div>
+    </div>
+</div>
 {{>footer}}

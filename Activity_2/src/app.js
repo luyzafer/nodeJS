@@ -63,6 +63,9 @@ app.post('/cursosEstudiantes', (req,res) => {
     res.render('cursosEstudiantes');
 });
 
+app.post('/home', (req,res) => {
+    res.render('index');
+});
 
 app.post('/removeEnroll', (req, res)=> {
     listarEstudiantesCursos();
@@ -71,9 +74,11 @@ app.post('/removeEnroll', (req, res)=> {
         console.log("No existen esas condiciones para eliminar inscripcion");
     }else{
         listaEstudiantesCursos = remove;
+        remove.forEach(item => console.log("item " + item.idEstudiante + item.idCurso));
+        guardarEnroll();
+        listarEstudiantesCursos();
+        listaEstudiantesCursos.forEach(item => console.log("item " + item.idEstudiante + item.idCurso));
     }
-    guardarEnroll();
-    listarEstudiantesCursos()
     res.render('removeEnroll');
 });
 
@@ -127,6 +132,10 @@ const guardarCurso = () => {
 app.post('/listCourses', (req, res) =>{
     res.render('listCourses');
 });
+
+app.post('/listCoursesEstudiantes', (req, res) =>{
+    res.render('listCoursesEstudiantes');
+});
 //End List Available curses
 
 
@@ -148,10 +157,12 @@ app.post('/detailCourse', (req, res)=>{
 
 //Init Enroll Course
 app.post('/enrollCourse', (req, res) => {
+    estudiantedSelected = '';
     listarEstudiantes();
     listarEstudiantesCursos();
     let findEstudiante = listaEstudiantes.find(estudiante => estudiante.idEstudiante == req.body.idEstudiante);
-    if(!findEstudiante){
+    console.log('estudiante' + findEstudiante);
+    if(findEstudiante == undefined ){
         crearEstudiante(req.body);
     }else{
         estudiantedSelected = findEstudiante;
