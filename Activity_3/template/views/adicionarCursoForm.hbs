@@ -1,0 +1,33 @@
+{{>header}}
+
+
+<div class="container">
+
+    <form action="/addCourses" method="post">
+        <table id="t01" class="table table-striped">
+            <tr>
+                <th>Nombre Curso</th>
+                <th>Id Curso</th>
+                <th>Descripcion</th>
+                <th>Valor</th>
+                <th>Modalidad</th>
+                <th>Intensidad Horaria</th>
+            </tr>
+            <tr>
+                <td><input type="text" name="nombreCurso" required></td>
+                <td><input type="number" name="idCurso" required></td>
+                <td><input type="text" name="descripcion" required></td>
+                <td><input type="number" name="valor" required></td>
+                <td><select name="modalidad">
+                        <option value="virtual">Virtual</option>
+                        <option value="presencial">Presencial</option>
+                    </select>
+                </td>
+                <td><input type="number" name="intensidadHoraria"></td>
+                <td><input type="hidden" name="estado" value="disponible" </td> </tr> </table> <button>Adicionar
+                    Curso</button>
+    </form>
+
+</div>
+
+{{>footer}}

@@ -1,0 +1,85 @@
+{{>header}}
+
+<br />
+
+<div class="container">
+  <table class="table table-striped">
+    <tr>
+      <th>Nombre </th>
+      <th>Descripcion </th>
+      <th>Valor </th>
+      <th>Modailidad </th>
+      <th>Intensidad Horaria </th>
+    </tr>
+    <tr>
+      <td>{{name}} </td>
+      <td>{{description}} </td>
+      <td>{{value}} </td>
+      <td>{{modality}} </td>
+      <td>{{schedule}} </td>
+    </tr>
+  </table>
+
+  {{#ifCond tipoUsuario 'Estudiante'}}
+
+  <div class="card" style="max-width: 100%; background-color:lightgrey">
+    <div class="card-header">Tus datos Personales</div>
+    <div class="card-body">
+      <form action="/enrollCourse" method="post">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <p>Documento de identidad: <input type="text" name="documento" value="{{documento}}" disabled required></p>
+          </div>
+          <div class="form-group col-md-6">
+            <p>Nombre: <input type="text" name="nombreestudiante" value={{nombre}} disabled required></p>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <p>Correo: <input type="text" name="email" value={{email}} disabled required></p>
+          </div>
+          <div class="form-group col-md-6">
+            <p>Telefono: <input type="number" name="telefono" value={{telefono}} disabled required></p>
+          </div>
+        </div>
+
+        <button class="btn btn-success">Enroll Course</button>
+
+      </form>
+    </div>
+  </div>
+  {{/ifCond}}
+
+  {{#ifCond tipoUsuario 'Aspirante'}}
+
+  <div class="card" style="max-width: 100%; background-color:lightgrey">
+    <div class="card-header">Tus datos Personales</div>
+    <div class="card-body">
+      <form action="/enrollCourse" method="post">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <p>Documento de identidad: <input type="text" name="documento" value="{{documento}}" disabled required></p>
+          </div>
+          <div class="form-group col-md-6">
+            <p>Nombre: <input type="text" name="nombreestudiante" value={{nombre}} disabled required></p>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            <p>Correo: <input type="text" name="email" value={{email}} disabled required></p>
+          </div>
+          <div class="form-group col-md-6">
+            <p>Telefono: <input type="number" name="telefono" value={{telefono}} disabled required></p>
+          </div>
+        </div>
+
+        <button class="btn btn-success">Enroll Course</button>
+
+      </form>
+    </div>
+  </div>
+  {{/ifCond}}
+
+</div>
+
+{{>footer}}

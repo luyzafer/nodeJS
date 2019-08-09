@@ -1,0 +1,58 @@
+{{>header}}
+<div class="container">
+  {{#if sesion}}
+  {{else}}
+  <h1 class="text-center">-------Registrese en la pagina-------</h1>
+  <form action="/" method="post" enctype="multipart/form-data">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label>Nombre</label>
+        <input type="text" class="form-control" name="nombre" placeholder="Nombre de usuario" required>
+      </div>
+      <div class="form-group col-md-6">
+        <label>Documento</label>
+        <input type="number" class="form-control" name="documento" placeholder="Documento de identidad" required>
+      </div>
+      <div class="form-group col-md-6">
+        <label>Correo electronico</label>
+        <input type="email" class="form-control" name="email" placeholder="Correo electronico" required>
+      </div>
+      <div class="form-group col-md-6">
+        <label>Contraseña</label>
+        <input type="text" class="form-control" name="password" placeholder="Contraseña" required>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label>Telefono</label>
+        <input type="number" class="form-control" name="telefono" placeholder="Telefono" required><br>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputState">Tipo de Usuario</label>
+         <input type="text" class="form-control" name="tipoUsuario" placeholder="tipoUsuario" value="Aspirante" readonly required>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <div class="file-field">
+          <div class="mb-6">
+            <img src="https://mdbootstrap.com/img/Photos/Others/placeholder-avatar.jpg"
+              class="rounded-circle z-depth-1-half" width="80px" alt="example placeholder avatar">
+          </div>
+          <div class="d-flex justify-content-center">
+            <div class="btn btn-mdb-color btn-rounded float-left">
+              <span>Foto de Perfil</span>
+              <input type="file" class="form-control" name="archivo" required>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <button class="btn btn-success">Registrar</button>
+      </div>
+    </div>
+
+  </form>
+  {{/if}}
+</div>
+{{>footer}}

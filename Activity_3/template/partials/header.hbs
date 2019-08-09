@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Cursos</title>
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+
+    <header>
+        <div class="container">
+            <img src="img/banner.jpg" width="100%">
+        </div>
+
+        <br>
+
+
+        <br>
+        <div class="container">
+            {{#if sesion}}
+
+            <div id="alert" hidden  class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong id="chat"></strong> 
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+
+
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item ">
+                            <a class="nav-link" href="/">INICIO </a>
+                        </li>
+                        {{#ifCond tipoUsuario 'Coordinador'}}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/listCourses">LISTAR CURSOS</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/adicionarCursoForm">ADICIONAR CURSO</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/cursosEstudiantes">LISTAR CURSOS E INSCRITOS</a>
+                        </li>
+                        {{/ifCond}}
+
+                        {{#ifCond tipoUsuario 'Aspirante'}}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/listCoursesEstudiantes">LISTAR CURSOS DISPONIBLES</a>
+                        </li>
+                        {{/ifCond}}
+
+                        {{#ifCond tipoUsuario 'Estudiante'}}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/listCoursesEstudiantes">LISTAR CURSOS DISPONIBLES</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/misCursos">MIS CURSOS</a>
+                        </li>
+                        {{/ifCond}}
+                    </ul>
+                    <divclass="form-group col-md-6">
+                        <form class="form-inline my-2 my-lg-0" action="/salir" method="get">
+                            <button class="btn btn-danger my-2 my-sm-0" type="submit">Salir</button>
+                        </form>
+                </div>
+
+                {{else}}
+                </ul>
+                <form class="form-inline my-2 my-lg-0" action="/ingresar" method="post">
+                    <input class="form-control mr-sm-2" type="text" name="usuario" placeholder="Nombre de usuario">
+                    <input class="form-control mr-sm-2" type="password" name="password" placeholder="Contraseña">
+                    <button class="btn btn-primary my-2 my-sm-0" type="submit">Ingresar</button>
+                </form>
+        </div>
+        </nav>
+        {{/if}}
+
+        </div>
+    </header>

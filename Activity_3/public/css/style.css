@@ -1,0 +1,66 @@
+body {
+    color: grey;
+    font-family: arial;
+    min-height: 100vh
+}
+
+footer {
+    color: red;
+    border-top: 2px solid red;
+    margin-top: 16px;
+}
+
+header {
+    margin-bottom: 48px;
+    margin-top: 16px;
+}
+
+h1 {
+    font-size: 48px;
+    margin-bottom: 16px;
+}
+
+.tablaBorder td, .tablaBorder th{
+    border: 1px solid black;
+    padding: 3px;
+  }
+
+  div.btn-group
+  {
+      display: flex;
+  }
+
+  div.btn-group form
+  {
+      float: left;
+  }
+
+  .button {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: darkgreen;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 15px;
+    padding: 5px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+  }
+
+  .buttonSub {
+    display: inline-block;
+    border-radius: 4px;
+    background-color: darkgreen;
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 15px;
+    padding: 20px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+  }
+
+  
