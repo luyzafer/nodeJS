@@ -31,7 +31,7 @@ require(directoriohelpers + '/helpers_cursos');
 require(directoriohelpers + '/helpers_cursos_estudiantes');
 
 
-const SENDGRID_API_KEY = "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";
+const SENDGRID_API_KEY = "";
 
 
 hbs.registerHelper('ifCond', function (v1, v2, options) {
