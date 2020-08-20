@@ -4,7 +4,7 @@
   "main": "src/app.js",
   "dependencies": {
     "@sendgrid/mail": "^6.4.0",
-    "bcrypt": "^3.0.5",
+    "bcrypt": "^5.0.0",
     "body-parser": "^1.18.3",
     "bootstrap": "^4.3.1",
     "ember-truth-helpers": "^2.1.0",
